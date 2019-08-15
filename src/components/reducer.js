@@ -26,8 +26,12 @@ export function reducer(state=initialState,action) {
             return newState;
 
         case "REMOVE":
-            console.log('remove in reducer');
-            return state;
+            console.log('remove in reducer', action);
+            const removedState = {...state};
+            removedState.store = [...state.store, action.payload];
+            removedState.car.features = removedState.car.features.filter(feature => feature.id !== action.payload.id);
+            removedState.additionalPrice -= action.payload.price;
+            return removedState;
         default: 
             console.log('action and state in reducer: ', action,state);
             return state;

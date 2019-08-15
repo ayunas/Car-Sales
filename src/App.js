@@ -10,6 +10,7 @@ const App = (props) => {
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
+    console.log('removeFeature triggered');
     props.dispatch({type: "REMOVE", payload: item})
   };
 
