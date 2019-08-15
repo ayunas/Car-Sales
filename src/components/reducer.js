@@ -17,6 +17,17 @@ const initialState = {
 
 export function reducer(state=initialState,action) {
     switch(action.type) {
+        case "BUY":
+            console.log('buy in reducer', action);
+            const newState = {...state};
+            newState.store = newState.store.filter(feature => feature.id !== action.payload.id )
+            newState.car.features = [...state.car.features, action.payload];
+            newState.additionalPrice += action.payload.price;
+            return newState;
+
+        case "REMOVE":
+            console.log('remove in reducer');
+            return state;
         default: 
             console.log('action and state in reducer: ', action,state);
             return state;

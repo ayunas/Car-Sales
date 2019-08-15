@@ -7,24 +7,26 @@ import Total from './components/Total';
 import {connect} from 'react-redux';
 
 const App = (props) => {
-  
 
   const removeFeature = item => {
     // dispatch an action here to remove an item
+    props.dispatch({type: "REMOVE", payload: item})
   };
 
   const buyItem = item => {
     // dipsatch an action here to add an item
+    console.log('buy item triggered in buyItem');
+    props.dispatch({type: "BUY", payload: item})
   };
 
   return (
     <div className="boxes">
       <div className="box">
         <Header car={props.car} />
-        <AddedFeatures car={props.car} />
+        <AddedFeatures car={props.car} remove={removeFeature} />
       </div>
       <div className="box">
-        <AdditionalFeatures store={props.store} />
+        <AdditionalFeatures store={props.store} buy={buyItem} />
         <Total car={props.car} additionalPrice={props.additionalPrice} />
       </div>
     </div>
@@ -32,7 +34,7 @@ const App = (props) => {
 };
 
 function mapStateToProps(state) {
-  console.log('state in mapState: ', state);
+  
   const {car, store, additionalPrice} = state;
   return {
     car : car,
