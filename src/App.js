@@ -23,6 +23,7 @@ const App = (props) => {
   return (
     <div className="boxes">
       <div className="box">
+        <h1>Hello this is vincent's deployment</h1>
         <Header car={props.car} />
         <AddedFeatures car={props.car} remove={removeFeature} />
       </div>
